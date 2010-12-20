@@ -19,9 +19,18 @@
   (setq whitespace-style '(face trailing space-before-tab newline empty space-after-tab tab-mark)))
 
 (defun ruby-enter ()
+  (interactive)
   (let
       ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
-    ))
+    (newline-and-indent)
+    (cond
+        ((string-match "^ *\\(def\\|if\\|while\\|begin\\)\\|^.*do\\( |.*|\\)?$" line)
+         (newline-and-indent)
+         (insert "end")
+         (ruby-indent-command)
+         (forward-line -1)
+         (ruby-indent-command))
+    )))
 
 (defun setup-ruby-mode ()
   (add-load-path "ruby-mode")
@@ -34,7 +43,7 @@
   (add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys)))
   (add-hook 'ruby-mode-hook 'turn-on-font-lock)
   (setq ruby-indent-tabs-mode nil)
-  (add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent))))
+  (add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "RET") 'ruby-enter))))
 
 (defun set-font ()
   (if (eq system-type 'windows-nt)
@@ -49,7 +58,8 @@
 
 (defun fundamental-mode-check ()
   (if (equal major-mode 'fundamental-mode)
-      (local-set-key (kbd "<tab>") 'tab-to-tab-stop)))
+      (local-set-key (kbd "<tab>") 'tab-to-tab-stop)
+      (setq indent-tabs-mode nil)))
 
 (defun miscellaneous ()
   (setq transient-mark-mode t)
@@ -59,8 +69,8 @@
   (setq backup-inhibited t)
   (setq auto-save-default nil)
   (setq buffer-offer-save nil)
-                                        ;(setq default-tab-width 4)
-  (setq indent-tabs-mode nil)
+  ;(setq default-tab-width 4)
+  (setq-default indent-tabs-mode t)
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t))
 
