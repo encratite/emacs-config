@@ -18,6 +18,11 @@
   (global-whitespace-mode)
   (setq whitespace-style '(face trailing space-before-tab newline empty space-after-tab tab-mark)))
 
+(defun ruby-enter ()
+  (let
+      ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
+    ))
+
 (defun setup-ruby-mode ()
   (add-load-path "ruby-mode")
   (require 'ruby-mode)
@@ -54,9 +59,10 @@
   (setq backup-inhibited t)
   (setq auto-save-default nil)
   (setq buffer-offer-save nil)
-  ;(setq default-tab-width 4)
+                                        ;(setq default-tab-width 4)
   (setq indent-tabs-mode nil)
-  (add-hook 'after-change-major-mode-hook 'fundamental-mode-check))
+  (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
+  (setq kill-whole-line t))
 
 (defun bind-keys ()
   (global-set-key (kbd "<f1>") 'copy-whole-buffer)
@@ -66,7 +72,9 @@
   (global-set-key (kbd "<f9>") 'reload-file)
   (global-set-key (kbd "<f12>") 'reload-configuration)
   (global-set-key (kbd "RET") 'newline-and-indent)
-  (global-set-key (kbd "<C-return>") 'newline))
+  (global-set-key (kbd "<C-return>") 'newline)
+  (global-set-key (kbd "C-k") 'kill-whole-line)
+  (global-set-key (kbd "C-l") 'copy-current-line))
 
 (defun reload-file ()
   (interactive)
@@ -83,6 +91,12 @@
 (defun indent-everything ()
   (interactive)
   (indent-region (point-min) (point-max)))
+
+(defun copy-current-line ()
+  (interactive)
+  (kill-ring-save
+   (line-beginning-position)
+   (line-end-position)))
 
 (defun save-buffers-kill-emacs (&optional arg)
   "Offer to save each buffer, then kill this Emacs process. With prefix arg, silently save all file-visiting buffers, then kill."
