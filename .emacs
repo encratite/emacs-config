@@ -24,7 +24,7 @@
       ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
     (newline-and-indent)
     (cond
-     ((string-match "^ *\\(class\\|def\\|if\\|while\\|begin\\)\\|^.*do\\( |.*|\\)?$" line)
+     ((string-match "^ *\\(class \\|def \\|if \\|while \\|begin\\)\\|^.*do\\( |.*|\\)?$" line)
       (newline-and-indent)
       (insert "end")
       (ruby-indent-command)
@@ -44,7 +44,8 @@
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (autoload 'run-ruby "inf-ruby""Run an inferior Ruby process")
   (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
-  (add-hook 'ruby-mode-hook 'rube-mode-hooks)
+  (message "wef")
+  (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
   (setq ruby-indent-tabs-mode nil))
 
 (defun haskell-mode-tab ()
@@ -62,7 +63,7 @@
   (require 'haskell-mode)
   (autoload 'haskell-mode' "haskell-mode" "Mode for editing Haskell source code")
   (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-  (add-hook 'haskell-mode-hook 'haskell-mode-hook))
+  (add-hook 'haskell-mode-hook 'haskell-mode-hooks))
 
 (defun set-font ()
   (if (eq system-type 'windows-nt)
