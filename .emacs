@@ -108,7 +108,8 @@
   (global-set-key (kbd "RET") 'newline-and-indent)
   (global-set-key (kbd "<C-return>") 'newline)
   (global-set-key (kbd "C-k") 'kill-whole-line)
-  (global-set-key (kbd "C-l") 'copy-current-line))
+  (global-set-key (kbd "C-l") 'copy-current-line)
+  (global-set-key (kbd "C-q") 'yank))
 
 (defun reload-file ()
   (interactive)
