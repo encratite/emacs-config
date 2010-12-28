@@ -95,13 +95,8 @@
   (setq buffer-offer-save nil)
   (setq-default indent-tabs-mode t)
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
-  (setq kill-whole-line t))
-
-(defun customised-backspace ()
-  (interactive)
-  (if (and transient-mark-mode mark-active)
-      (delete-region)
-    (backward-delete-char-untabify)))
+  (setq kill-whole-line t)
+  (setq delete-selection-mode t))
 
 (defun bind-keys ()
   (global-set-key (kbd "<f1>") 'copy-whole-buffer)
@@ -113,9 +108,7 @@
   (global-set-key (kbd "RET") 'newline-and-indent)
   (global-set-key (kbd "<C-return>") 'newline)
   (global-set-key (kbd "C-k") 'kill-whole-line)
-  (global-set-key (kbd "C-l") 'copy-current-line)
-  ;(global-set-key (kbd "<backspace>") 'customised-backspace)
-  )
+  (global-set-key (kbd "C-l") 'copy-current-line))
 
 (defun reload-file ()
   (interactive)
