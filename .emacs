@@ -18,6 +18,11 @@
   (global-whitespace-mode)
   (setq whitespace-style '(face trailing space-before-tab newline empty space-after-tab tab-mark)))
 
+(defun setup-company-mode ()
+  (add-load-path "company-mode")
+  (require 'company)
+  (autoload 'company-mode "company" nil t))
+
 (defun ruby-enter ()
   (interactive)
   (let
@@ -44,7 +49,6 @@
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (autoload 'run-ruby "inf-ruby""Run an inferior Ruby process")
   (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
-  (message "wef")
   (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
   (setq ruby-indent-tabs-mode nil))
 
@@ -89,10 +93,15 @@
   (setq backup-inhibited t)
   (setq auto-save-default nil)
   (setq buffer-offer-save nil)
-                                        ;(setq default-tab-width 4)
   (setq-default indent-tabs-mode t)
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t))
+
+(defun customised-backspace ()
+  (interactive)
+  (if (and transient-mark-mode mark-active)
+      (delete-region)
+    (backward-delete-char-untabify)))
 
 (defun bind-keys ()
   (global-set-key (kbd "<f1>") 'copy-whole-buffer)
@@ -104,7 +113,9 @@
   (global-set-key (kbd "RET") 'newline-and-indent)
   (global-set-key (kbd "<C-return>") 'newline)
   (global-set-key (kbd "C-k") 'kill-whole-line)
-  (global-set-key (kbd "C-l") 'copy-current-line))
+  (global-set-key (kbd "C-l") 'copy-current-line)
+  ;(global-set-key (kbd "<backspace>") 'customised-backspace)
+  )
 
 (defun reload-file ()
   (interactive)
@@ -190,6 +201,7 @@
 (set-colour-theme)
 (fix-whitespace)
 
+(setup-company-mode)
 (setup-ruby-mode)
 (setup-haskell-mode)
 
