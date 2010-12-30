@@ -18,10 +18,11 @@
   (global-whitespace-mode)
   (setq whitespace-style '(face trailing space-before-tab newline empty space-after-tab tab-mark)))
 
-(defun setup-company-mode ()
-  (add-load-path "company-mode")
-  (require 'company)
-  (autoload 'company-mode "company" nil t))
+(defun setup-auto-complete-mode ()
+  (add-load-path "auto-complete")
+  (require 'auto-complete-config)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+  (ac-config-default))
 
 (defun ruby-enter ()
   (interactive)
@@ -134,6 +135,18 @@
    (line-beginning-position)
    (line-end-position)))
 
+(defun fi-fix (&optional count)
+  (interactive)
+  (insert "[\"")
+  (yank)
+  (insert "\", \"")
+  (when (null count)
+    (setf count 1))
+  (dotimes (i count)
+    (insert "FI;\\n"))
+  (yank)
+  (insert "\"],"))
+
 (defun perform-file-indentation (path)
   (message "Processing %s" path)
   (switch-to-buffer (find-file-noselect path))
@@ -195,7 +208,7 @@
 (set-colour-theme)
 (fix-whitespace)
 
-(setup-company-mode)
+(setup-auto-complete-mode)
 (setup-ruby-mode)
 (setup-haskell-mode)
 
