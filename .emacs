@@ -24,6 +24,24 @@
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
   (ac-config-default))
 
+(defun setup-tabbar ()
+  (require 'tabbar)
+  (tabbar-mode t)
+  )
+
+ (defun customised-tabbar-buffer-groups (buffer)
+   "Return the list of group names BUFFER belongs to.
+ Return only one group for each buffer."
+   (with-current-buffer (get-buffer buffer)
+     (cond
+      ((string-equal "*" (substring (buffer-name) 0 1))
+       '("Emacs Buffer"))
+      ((eq major-mode 'dired-mode)
+       '("Dired"))
+      (t
+       '("User Buffer"))
+      )))
+
 (defun ruby-enter ()
   (interactive)
   (let
@@ -89,6 +107,7 @@
 (defun miscellaneous ()
   (setq transient-mark-mode t)
   (setq custom-file "~/.emacs-custom.el")
+  (load custom-file)
   (setq inhibit-startup-screen t)
   (setq ring-bell-function (lambda ()))
   (setq backup-inhibited t)
@@ -97,7 +116,8 @@
   (setq-default indent-tabs-mode t)
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t)
-  (setq delete-selection-mode t))
+  (setq delete-selection-mode t)
+  (prefer-coding-system 'utf-8))
 
 (defun bind-keys ()
   (global-set-key (kbd "<f1>") 'copy-whole-buffer)
@@ -118,7 +138,8 @@
 
 (defun reload-configuration ()
   (interactive)
-  (load "~/.emacs"))
+  (load "~/.emacs")
+  (load custom-file))
 
 (defun copy-whole-buffer ()
   (interactive)
@@ -208,11 +229,12 @@
 (set-colour-theme)
 (fix-whitespace)
 
-(setup-auto-complete-mode)
+;(setup-auto-complete-mode)
 (setup-ruby-mode)
-(setup-haskell-mode)
+;(setup-haskell-mode)
 
 (set-font)
 (fix-scrolling)
 (miscellaneous)
+(setup-tabbar)
 (bind-keys)
