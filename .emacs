@@ -119,7 +119,8 @@
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t)
   (setq delete-selection-mode t)
-  (prefer-coding-system 'utf-8))
+  (prefer-coding-system 'utf-8)
+  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function))
 
 (defun bind-keys ()
   (global-set-key (kbd "<f1>") 'copy-whole-buffer)
@@ -240,3 +241,4 @@
 (miscellaneous)
 (setup-tabbar)
 (bind-keys)
+(server-start)
