@@ -178,6 +178,12 @@
   (save-buffer)
   (kill-buffer (current-buffer)))
 
+(defun run-server ()
+  (defvar server-is-running nil)
+  (when (null server-is-running)
+    (setq server-is-running t)
+    (server-start)))
+
 (defun project-indentation (directory source-file-regex)
   (interactive)
   (dolist
@@ -234,11 +240,11 @@
 
 ;(setup-auto-complete-mode)
 (setup-ruby-mode)
-;(setup-haskell-mode)
+(setup-haskell-mode)
 
 (set-font)
 (fix-scrolling)
 (miscellaneous)
 (setup-tabbar)
 (bind-keys)
-(server-start)
+(run-server)
