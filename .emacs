@@ -91,8 +91,10 @@
   (add-hook 'haskell-mode-hook 'haskell-mode-hooks))
 
 (defun set-font ()
-  (if (eq system-type 'windows-nt)
-      (set-default-font "-outline-Terminus-medium-r-normal-normal-16-120-96-96-c-*-iso8859-")))
+  (set-default-font
+   (if (eq system-type 'windows-nt)
+       "-outline-Lucida Console-normal-r-normal-normal-16-120-96-96-c-*-iso8859-1"
+     "-outline-Terminus-medium-r-normal-normal-16-120-96-96-c-*-iso8859-")))
 
 (defun fix-scrolling ()
   (require 'smooth-scrolling)
@@ -119,8 +121,7 @@
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t)
   (setq delete-selection-mode t)
-  (prefer-coding-system 'utf-8)
-  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function))
+  (prefer-coding-system 'utf-8))
 
 (defun bind-keys ()
   (global-set-key (kbd "<f1>") 'copy-whole-buffer)
@@ -182,7 +183,8 @@
   (defvar server-is-running nil)
   (when (null server-is-running)
     (setq server-is-running t)
-    (server-start)))
+    (server-start))
+  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function))
 
 (defun project-indentation (directory source-file-regex)
   (interactive)
