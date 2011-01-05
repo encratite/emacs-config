@@ -1,12 +1,19 @@
+(defmacro define-global-keybindings (&rest specs)
+  `(progn
+     ,@(loop for (keys command) in specs
+             collect `(global-set-key (kbd ,keys) ',command))))
+
+
 (defun bind-keys ()
-  (global-set-key (kbd "<f1>") 'copy-whole-buffer)
-  (global-set-key (kbd "<f2>") 'delete-other-windows)
-  (global-set-key (kbd "<f3>") 'fix-formatting)
-  (global-set-key (kbd "<f5>") 'save-buffer)
-  (global-set-key (kbd "<f9>") 'reload-file)
-  (global-set-key (kbd "<f12>") 'reload-configuration)
-  (global-set-key (kbd "RET") 'newline-and-indent)
-  (global-set-key (kbd "<C-return>") 'newline)
-  (global-set-key (kbd "C-k") 'kill-whole-line)
-  (global-set-key (kbd "C-l") 'copy-current-line)
-  (global-set-key (kbd "C-q") 'yank))
+  (define-global-keybindings
+    ("<f1>" copy-whole-buffer)
+    ("<f2>" delete-other-windows)
+    ("<f3>" fix-formatting)
+    ("<f5>" save-buffer)
+    ("<f9>" reload-file)
+    ("<f12>" reload-configuration)
+    ("RET" newline-and-indent)
+    ("<C-return>" newline)
+    ("C-k" kill-whole-line)
+    ("C-l" copy-current-line)
+    ("C-q" yank)))
