@@ -1,0 +1,28 @@
+(defun ruby-enter ()
+  (interactive)
+  (let
+      ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
+    (newline-and-indent)
+    (cond
+     ((string-match "^ *\\(class \\|def \\|if \\|while \\|begin\\)\\|^.*do\\( |.*|\\)?$" line)
+      (newline-and-indent)
+      (insert "end")
+      (ruby-indent-command)
+      (forward-line -1)
+      (ruby-indent-command)))))
+
+(defun ruby-mode-hooks ()
+  (inf-ruby-keys)
+  (turn-on-font-lock)
+  (local-set-key (kbd "RET") 'ruby-enter))
+
+(defun setup-ruby-mode ()
+  (add-load-path "ruby-mode")
+  (require 'ruby-mode)
+  (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files")
+  (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+  (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+  (autoload 'run-ruby "inf-ruby""Run an inferior Ruby process")
+  (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
+  (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
+  (setq ruby-indent-tabs-mode nil))
