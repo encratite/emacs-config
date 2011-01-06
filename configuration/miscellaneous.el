@@ -22,13 +22,6 @@
       (local-set-key (kbd "<tab>") 'tab-to-tab-stop)
     (setq indent-tabs-mode nil)))
 
-(defun run-server ()
-  (defvar server-is-running nil)
-  (when (null server-is-running)
-    (setq server-is-running t)
-    (server-start))
-  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function))
-
 (defun miscellaneous ()
   (setq transient-mark-mode t)
   (setq custom-file "~/.emacs-custom.el")
