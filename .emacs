@@ -11,6 +11,8 @@
                 "keys"
                 "miscellaneous"
                 "modes"
+                ;"search"
+                "server"
                 "tabbar"
 
                 "haskell"
@@ -30,5 +32,6 @@
 (fix-scrolling)
 (miscellaneous)
 (setup-tabbar)
+;(setup-search-mode)
 (bind-keys)
 (run-server)

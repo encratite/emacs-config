@@ -36,4 +36,5 @@
   (setq kill-whole-line t)
   (setq delete-selection-mode t)
   (prefer-coding-system 'utf-8)
-  (setq column-number-mode t))
+  (setq column-number-mode t)
+  (tool-bar-mode 0))
