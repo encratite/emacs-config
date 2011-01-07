@@ -64,7 +64,7 @@
       (decf string-index)
       (cond
        ((is-whitespace (aref line string-index))
-          (incf whitespace-count 1))
+        (incf whitespace-count 1))
        (t (setq perform-iteration nil))))
     (backward-delete-char-untabify
      (max whitespace-count 1))))
