@@ -26,18 +26,45 @@
   (interactive)
   (kill-buffer (current-buffer)))
 
-(defun custom-backspace ()
+(defun is-whitespace (character)
+  (member character '(?\  ?\t)))
+
+(defun custom-home ()
   (interactive)
   (let
-      ((line (buffer-substring-no-properties (line-beginning-position) (point))))
-    (setq whitespace-count 0)
-    (setq string-index (- (length line) 1))
-    (setq perform-iteration t)
-    (while (and perform-iteration (>= string-index 0))
+      ((line
+        (buffer-substring-no-properties
+         (line-beginning-position) (line-end-position)))
+       (last-whitespace-offset 0)
+       (perform-iteration t))
+    (while
+        (and
+         perform-iteration
+         (< last-whitespace-offset (length line)))
+      (if
+          (is-whitespace (aref line last-whitespace-offset))
+          (incf last-whitespace-offset)
+        (setq perform-iteration nil)))
+    (if
+        (> (point) (+ (line-beginning-position) last-whitespace-offset))
+        (back-to-indentation)
+      (move-beginning-of-line nil))))
+
+(defun custom-backspace ()
+  (interactive)
+  (let*
+      ((line
+        (buffer-substring-no-properties
+         (line-beginning-position) (point)))
+       (string-index (length line))
+       (whitespace-count 0)
+       (perform-iteration t))
+    (while
+        (and perform-iteration (> string-index 0))
+      (decf string-index)
       (cond
-       ((member (aref line string-index) '(?\  ?\t))
-          (setq whitespace-count (+ whitespace-count 1))
-          (setq string-index (- string-index 1)))
+       ((is-whitespace (aref line string-index))
+          (incf whitespace-count 1))
        (t (setq perform-iteration nil))))
-    (setq remove-count (max whitespace-count 1))
-    (backward-delete-char-untabify remove-count)))
+    (backward-delete-char-untabify
+     (max whitespace-count 1))))

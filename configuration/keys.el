@@ -17,6 +17,7 @@
 
     ("RET" newline-and-indent)
     ("<backspace>" custom-backspace)
+    ("<home>" custom-home)
 
     ("<C-return>" newline)
     ("C-k" kill-whole-line)

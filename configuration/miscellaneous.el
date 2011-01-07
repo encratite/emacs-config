@@ -34,7 +34,7 @@
   (setq-default indent-tabs-mode t)
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t)
-  (setq delete-selection-mode t)
+  (delete-selection-mode t)
   (prefer-coding-system 'utf-8)
   (setq column-number-mode t)
   (tool-bar-mode 0))
