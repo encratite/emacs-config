@@ -1,6 +1,5 @@
 (defun run-server ()
-  (defvar server-is-running nil)
-  (when (null server-is-running)
+  (when first-time-load
     (setq server-is-running t)
     (server-start))
   (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)

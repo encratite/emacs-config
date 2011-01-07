@@ -9,10 +9,15 @@
     ("<f1>" copy-whole-buffer)
     ("<f2>" delete-other-windows)
     ("<f3>" fix-formatting)
+    ("<f4>" delete-trailing-whitespace)
     ("<f5>" save-buffer)
     ("<f9>" reload-file)
+    ("<f10>" kill-current-buffer)
     ("<f12>" reload-configuration)
+
     ("RET" newline-and-indent)
+    ("<backspace>" custom-backspace)
+
     ("<C-return>" newline)
     ("C-k" kill-whole-line)
     ("C-l" copy-current-line)

@@ -11,7 +11,7 @@
                 "keys"
                 "miscellaneous"
                 "modes"
-                ;"search"
+                ;;"search"
                 "server"
                 "tabbar"
 
@@ -19,12 +19,16 @@
                 "ruby"))
   (load-config-file file))
 
+;;this variable is set to nil once the configuration has been loaded for the first time
+;;this is used to avoid relaunching of the emacs server and disabling the linum mode on configuration reloads
+(defvar first-time-load t)
+
 (enable-site)
 (enable-line-numbers)
 (set-colour-theme)
 (fix-whitespace)
 
-;(setup-auto-complete-mode)
+;;(setup-auto-complete-mode)
 (setup-ruby-mode)
 (setup-haskell-mode)
 
@@ -32,6 +36,8 @@
 (fix-scrolling)
 (miscellaneous)
 (setup-tabbar)
-;(setup-search-mode)
+;;(setup-search-mode)
 (bind-keys)
 (run-server)
+
+(setq first-time-load nil)
