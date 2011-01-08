@@ -46,9 +46,6 @@
 (defun custom-backspace ()
   "Delete all whitespace to the left of the point up to the beginning of the line, or just the previous non-whitespace character"
   (interactive)
-  (flet ((whitespace-before () (is-whitespace (char-before)))
-         (delete () (delete-backward-char 1)))
-    (if (whitespace-before)
-        (while (whitespace-before)
-          (delete))
-      (delete))))
+  (loop (delete-backward-char 1)
+        (unless (is-whitespace (char-before))
+          (return))))

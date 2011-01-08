@@ -22,4 +22,5 @@
     ("<C-return>" newline)
     ("C-k" kill-whole-line)
     ("C-l" copy-current-line)
-    ("C-q" yank)))
+    ("C-q" yank)
+    ("C-n" quoted-insert)))
