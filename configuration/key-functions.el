@@ -4,8 +4,8 @@
 
 (defun reload-configuration ()
   (interactive)
-  (load "~/.emacs")
-  (load custom-file))
+  (message "Reloading the configuration")
+  (load "~/.emacs"))
 
 (defun copy-whole-buffer ()
   (interactive)
@@ -52,3 +52,7 @@
         (while (whitespace-before)
           (delete))
       (delete))))
+
+(defun insert-tab ()
+  (interactive)
+  (insert ?\t))

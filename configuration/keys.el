@@ -3,7 +3,6 @@
      ,@(loop for (keys command) in specs
              collect `(global-set-key (kbd ,keys) ',command))))
 
-
 (defun bind-keys ()
   (define-global-keybindings
     ("<f1>" copy-whole-buffer)
@@ -23,4 +22,5 @@
     ("C-k" kill-whole-line)
     ("C-l" copy-current-line)
     ("C-q" yank)
-    ("C-n" quoted-insert)))
+    ("C-n" quoted-insert)
+    ("<C-tab>" insert-tab)))

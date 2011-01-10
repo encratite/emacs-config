@@ -4,11 +4,13 @@
 (defun enable-site ()
   (add-load-path "site-lisp"))
 
+(defun is-windows ()
+  (eq system-type 'windows-nt))
+
 (defun set-font ()
-  (set-default-font
-   (if (eq system-type 'windows-nt)
-       "-outline-Lucida Console-normal-r-normal-normal-16-120-96-96-c-*-iso8859-1"
-     "-outline-Terminus-medium-r-normal-normal-16-120-96-96-c-*-iso8859-")))
+  (set-default-font (if (is-windows)
+                        "-outline-Lucida Console-normal-r-normal-normal-16-120-96-96-c-*-iso8859-1"
+                      "Lucida Console:pixelsize=14:foundry=b&h:weight=normal:slant=normal:width=semi-condensed:spacing=100:scalable=true")))
 
 (defun fix-scrolling ()
   (require 'smooth-scrolling)

@@ -6,8 +6,9 @@
 (defun set-colour-theme ()
   (require 'color-theme)
   (color-theme-initialize)
-  ;;(color-theme-hober)
-  (color-theme-charcoal-black))
+  (if (is-windows)
+      (color-theme-charcoal-black)
+    (color-theme-jb-simple)))
 
 (defun fix-whitespace ()
   (when first-time-load
