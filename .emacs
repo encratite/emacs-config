@@ -6,12 +6,11 @@
          (format "configuration/%s.el" file))))
 
 (dolist (file '("commands"
-                "indentation"
                 "key-functions"
                 "keys"
                 "miscellaneous"
                 "modes"
-                ;;"search"
+		"process-files"
                 "server"
                 "tabbar"
 

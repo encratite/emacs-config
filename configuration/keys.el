@@ -3,7 +3,6 @@
      ,@(loop for (keys command) in specs
              collect `(global-set-key (kbd ,keys) ',command))))
 
-
 (defun bind-keys ()
   (define-global-keybindings
     ("<f1>" copy-whole-buffer)
