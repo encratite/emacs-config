@@ -10,7 +10,7 @@
                 "keys"
                 "miscellaneous"
                 "modes"
-		"process-files"
+                "process-files"
                 "server"
                 "tabbar"
 
