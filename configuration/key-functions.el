@@ -52,3 +52,7 @@
         (while (whitespace-before)
           (delete))
       (delete))))
+
+(defun insert-tab ()
+  (interactive)
+  (insert ?\t))

@@ -23,4 +23,5 @@
     ("C-k" kill-whole-line)
     ("C-l" copy-current-line)
     ("C-q" yank)
-    ("C-n" quoted-insert)))
+    ("C-n" quoted-insert)
+    ("<C-tab>" insert-tab)))
