@@ -12,5 +12,6 @@
   (add-load-path "haskell-mode")
   (require 'haskell-mode)
   (autoload 'haskell-mode' "haskell-mode" "Mode for editing Haskell source code")
-  (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+  (dolist (extension '("hs", "hsc"))
+    (add-to-list 'auto-mode-alist `(,(format "\\.%s$" extension) . haskell-mode)))
   (add-hook 'haskell-mode-hook 'haskell-mode-hooks))
