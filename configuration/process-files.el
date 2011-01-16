@@ -21,4 +21,4 @@
   (apply-operation-to-files #'fix-formatting directory source-file-regex))
 
 (defun dos-to-unix-line-endings (directory source-file-regex)
-  (apply-operation-to-files #'(lambda () (set-buffer-file-coding-system 'undecided-unix)) directory source-file-regex))
+  (apply-operation-to-files #'(lambda () (set-buffer-file-coding-system 'utf-8-unix)) directory source-file-regex))

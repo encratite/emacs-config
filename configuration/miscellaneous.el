@@ -38,5 +38,6 @@
   (setq kill-whole-line t)
   (delete-selection-mode t)
   (prefer-coding-system 'utf-8)
+  (setq default-buffer-file-coding-system 'utf-8-unix)
   (setq column-number-mode t)
   (tool-bar-mode 0))
