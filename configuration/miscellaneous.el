@@ -40,4 +40,5 @@
   (prefer-coding-system 'utf-8)
   (setq default-buffer-file-coding-system 'utf-8-unix)
   (setq column-number-mode t)
-  (tool-bar-mode 0))
+  (tool-bar-mode 0)
+  (toggle-debug-on-error))
