@@ -8,6 +8,7 @@
 (dolist (file '("commands"
                 "key-functions"
                 "keys"
+                "latex"
                 "miscellaneous"
                 "modes"
                 "process-files"
@@ -30,6 +31,7 @@
 ;;(setup-auto-complete-mode)
 (setup-ruby-mode)
 (setup-haskell-mode)
+(setup-latex-mode)
 
 (set-font)
 (fix-scrolling)
