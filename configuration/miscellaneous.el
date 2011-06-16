@@ -25,6 +25,12 @@
       (local-set-key (kbd "<tab>") 'tab-to-tab-stop)
     (setq indent-tabs-mode nil)))
 
+(defun setup-cuda-mode ()
+  (add-load-path "cuda-mode")
+  (require 'cuda-mode)
+  (autoload 'cuda-mode "cuda-mode" "Mode for editing CUDA (.cu) source files")
+  (add-to-list 'auto-mode-alist '("\\.cu$" . cuda-mode)))
+
 (defun miscellaneous ()
   (setq transient-mark-mode t)
   (setq custom-file "~/.emacs-custom.el")

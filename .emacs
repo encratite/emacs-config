@@ -32,6 +32,7 @@
 (setup-ruby-mode)
 (setup-haskell-mode)
 (setup-latex-mode)
+(setup-cuda-mode)
 
 (set-font)
 (fix-scrolling)
