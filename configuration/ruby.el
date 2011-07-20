@@ -4,7 +4,7 @@
       ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
     (newline-and-indent)
     (cond
-     ((string-match "^ *\\(class \\|def \\|if \\|while \\|begin\\)\\|^.*do\\( |.*|\\)?$" line)
+     ((string-match "^ *\\(class \\|module \\|def \\|if \\|while \\|begin\\)\\|^.*do\\( |.*|\\)?$" line)
       (newline-and-indent)
       (insert "end")
       (ruby-indent-command)
