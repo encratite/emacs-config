@@ -30,7 +30,8 @@
   (require 'cuda-mode)
   (autoload 'cuda-mode "cuda-mode" "Mode for editing CUDA (.cu) source files")
   ;(add-to-list 'auto-mode-alist '("\\.cu$" . cuda-mode))
-  (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode)))
+  (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.hcu$" . c++-mode)))
 
 (defun miscellaneous ()
   (setq transient-mark-mode t)
