@@ -26,9 +26,9 @@
     (setq indent-tabs-mode nil)))
 
 (defun setup-cuda-mode ()
-  (add-load-path "cuda-mode")
-  (require 'cuda-mode)
-  (autoload 'cuda-mode "cuda-mode" "Mode for editing CUDA (.cu) source files")
+  ;(add-load-path "cuda-mode")
+  ;(require 'cuda-mode)
+  ;(autoload 'cuda-mode "cuda-mode" "Mode for editing CUDA (.cu) source files")
   ;(add-to-list 'auto-mode-alist '("\\.cu$" . cuda-mode))
   (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.hcu$" . c++-mode)))
