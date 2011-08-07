@@ -43,6 +43,8 @@
   (setq auto-save-default nil)
   (setq buffer-offer-save nil)
   (setq-default indent-tabs-mode t)
+  (setq-default tab-width 4)
+  (setq-default c-basic-offset 4)
   (add-hook 'after-change-major-mode-hook 'fundamental-mode-check)
   (setq kill-whole-line t)
   (delete-selection-mode t)
